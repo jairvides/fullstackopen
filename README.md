@@ -74,3 +74,21 @@ sequenceDiagram
 
     Note right of browser: La SPA renderiza dinámicamente las notas en la página sin recargarla
 ```
+# 0.6 Diagrama de Secuencia: Crear una nueva nota en la versión SPA
+
+```mermaid
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note right of browser: Usuario escribe una nueva nota y hace clic en "Save"
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    Note right of server: El servidor guarda la nueva nota
+    server-->>browser: Respuesta vacía o de confirmación (status 201)
+    deactivate server
+
+    Note right of browser: La SPA actualiza dinámicamente el estado local con la nueva nota
+    Note right of browser: La nueva nota aparece en la lista sin recargar la página
+```
